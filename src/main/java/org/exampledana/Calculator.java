@@ -47,7 +47,7 @@ public class Calculator {
                 //System.out.println(matcher.group(i));
             }
         }
-        //System.out.println(listOfComputations);
+        if(listOfComputations.size()==0)System.out.println("Wrong format of the expression.Try again!");
         double value=0;
         for (int i=0; i<=listOfComputations.size()-3; i++){
             if(listOfComputations.get(i).equals("+")){
