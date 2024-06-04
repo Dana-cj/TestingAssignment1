@@ -11,13 +11,18 @@ import java.util.Scanner;
 public class CalculatorTest {
 
     @Test
-    public void gettingUnitWorks(){
+    public void gettingUnitFromUserWorks(){
         String input1="mm";
-        Assertions.assertEquals(Unit.mm, Calculator.getUnit(new Scanner(input1)));
-        String input2="Km";
-        Assertions.assertEquals(Unit.km, Calculator.getUnit(new Scanner(input2)));
+        Assertions.assertEquals(Unit.mm, Calculator.getUnitFromUser(new Scanner(input1)));
         String input3="CM";
-        Assertions.assertEquals(Unit.cm, Calculator.getUnit(new Scanner(input3)));
+        Assertions.assertEquals(Unit.cm, Calculator.getUnitFromUser(new Scanner(input3)));
+    }
+    @Test
+    public void gettingFinalUnitWorks(){
+        Assertions.assertEquals(Unit.dm, Calculator.getFinalUnit("2cm+1mm", Unit.dm));
+        Assertions.assertEquals(Unit.mm, Calculator.getFinalUnit("10m+20cm", Unit.mm));
+        Assertions.assertEquals(Unit.mm, Calculator.getFinalUnit("2cm+1mm", null));
+        Assertions.assertEquals(Unit.cm, Calculator.getFinalUnit("10m+20cm", null));
     }
     @Test
     public void conversionWorks() {
@@ -37,7 +42,7 @@ public class CalculatorTest {
     }
     @Test
     public void subtractionWorks() {
-       // Assertions.assertEquals((0.8), Calculator.calculateDistance("1m-2dm", Unit.m));
+        Assertions.assertEquals((0.8), Calculator.calculateDistance("1m-2dm", Unit.m));
         Assertions.assertEquals((18), Calculator.calculateDistance("-20mm+20cm", Unit.cm));
     }
     @Test
